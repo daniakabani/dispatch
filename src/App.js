@@ -1,7 +1,8 @@
 import React from "react";
+import Routes from "./routes";
 
 const App = () => {
-  return <h1>Hai! welcome to dispatch!</h1>
+  return <Routes />
 };
 
 export default App;
