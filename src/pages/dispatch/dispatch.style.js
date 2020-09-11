@@ -28,6 +28,18 @@ const DispatchStyle = styled.section`
       h1 {
         margin-bottom: 20px;
       }
+      .parcel-type, .vehicle-type {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        .package-types{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
     }
   }
 `;

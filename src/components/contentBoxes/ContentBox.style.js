@@ -9,6 +9,7 @@ const ContentBoxStyle = styled.div`{
     margin-bottom: 20px;
     border: 1px solid #333;
     min-width: 80px;
+    cursor: pointer;
     .DA-box-content {
       display: flex;
       align-items: center;
@@ -24,6 +25,9 @@ const ContentBoxStyle = styled.div`{
         text-align: center;
         font-size: 14px;
       }
+    }
+    &.active {
+      background-color: #1abc9c;
     }
   }
 }`;
