@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const InputFieldStyle = styled.div`{
+  width: 100%;
   .DA-input-field {
     position: relative;
     input {
@@ -21,6 +22,14 @@ const InputFieldStyle = styled.div`{
         background: white;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.07);
         outline: none;
+      }
+    }
+    &.lite {
+      input {
+        background: #fff;
+        &::placeholder {
+          color: #333;
+        }
       }
     }
   }

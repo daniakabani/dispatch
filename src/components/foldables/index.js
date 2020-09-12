@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import FoldableStyle from "./foldable.style";
 import ArrowImage from "./images/down-arrow.svg";
+import classNames from "classnames";
 
 const Foldable = (props) => {
   const [state, setState] = useState({
     active: false,
     disabled: false
   });
-  const { disabled, children, title } = props;
+  const { children, title } = props;
   const { active } = state;
+  const classes = classNames("DA-foldable-wrapper", {
+    active
+  })
+
   const toggleActive = () => {
     setState({
       ...state,
@@ -19,9 +24,9 @@ const Foldable = (props) => {
 
   return (
     <FoldableStyle>
-      <div className={active ? "DA-foldable-wrapper disabled" : "DA-foldable-wrapper"}>
+      <div className={classes}>
         <div className="foldable-toggle" onClick={toggleActive}>
-          <article className={active ? "active" : ""}>
+          <article>
             {title}
           </article>
           <figure>

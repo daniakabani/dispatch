@@ -15,6 +15,7 @@ const FoldableStyle = styled.div`{
     width: 100%;
     padding: 7px;
     height: 40px;
+    cursor: pointer;
       figure{
         position: absolute;
         right: 14px;
@@ -30,15 +31,25 @@ const FoldableStyle = styled.div`{
       }
     }
     .foldable-content {
-      padding: 20px;
-      transition: max-height 0.3s ease-out;
-    }
-    &.disabled {
-      .foldable-content {
+      max-height: 0;
+      padding: 0;
+      * {
         max-height: 0;
-        padding: 0;
+        visibility: hidden;
+      }
+    }
+    &.active {
+      &.foldable-toggle {
+        figure {
+          transform: rotate(180deg);
+        }
+      }
+      .foldable-content {
+        max-height: unset;
+        padding: 20px;
         * {
-          display: none;
+          max-height: unset;
+          visibility: unset;
         }
       }
     }

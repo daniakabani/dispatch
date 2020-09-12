@@ -9,7 +9,10 @@ const DispatchPage = () => {
 
   const [orderSummary, setOrderSummary] = useState({
     packageType: null,
-    vehicleType: null
+    vehicleType: null,
+    pickup: null,
+    destination: null,
+    special: null
   });
   const { packageType, vehicleType } = orderSummary;
 
@@ -25,6 +28,24 @@ const DispatchPage = () => {
       vehicleType: type
     })
   }
+  const handleInputs = (event, type) => {
+    if (type === "pickup") {
+      setOrderSummary({
+        ...orderSummary,
+        pickup: event.target.value
+      })
+    } else if(type === "destination") {
+      setOrderSummary({
+        ...orderSummary,
+        destination: event.target.value
+      })
+    } else {
+      setOrderSummary({
+        ...orderSummary,
+        special: event.target.value
+      })
+    }
+  }
   return (
     <DispatchStyle>
       <section id="main">
@@ -34,8 +55,8 @@ const DispatchPage = () => {
             <h1>Lets get your stuff delivered!</h1>
             <div className="form-wrapper">
               <form>
-                <InputField placeHolder="Where do we meet you?" id="DA-pickup-location" />
-                <InputField placeHolder="Where to?" id="DA-drop-off-location" />
+                <InputField onChange={e => handleInputs(e, "pickup")} placeHolder="Where do we meet you?" id="DA-pickup-location" />
+                <InputField onChange={e => handleInputs(e, "destination")} placeHolder="Where to?" id="DA-drop-off-location" />
               </form>
             </div>
             <Foldable title="Your Parcel Type">
@@ -70,10 +91,11 @@ const DispatchPage = () => {
                   <h4>Tell us if you have special instructions</h4>
                 </header>
                 <div className="package-types">
-                  <InputField id="special-remarks" />
+                  <InputField onChange={e => handleInputs(e)} lite id="special-remarks" placeHolder="Any special remarks?" />
                 </div>
               </div>
             </Foldable>
+            <button onClick={() => console.log(orderSummary)}>Show Summary</button>
           </div>
         </div>
       </section>

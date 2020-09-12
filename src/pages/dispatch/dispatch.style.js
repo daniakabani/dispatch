@@ -39,6 +39,9 @@ const DispatchStyle = styled.section`
           align-items: center;
           justify-content: space-between;
         }
+        h4 {
+          margin-bottom: 20px;
+        }
       }
     }
   }
