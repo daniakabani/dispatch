@@ -41,7 +41,7 @@ const Foldable = (props) => {
   )
 };
 
-Foldable.prototype = {
+Foldable.propTypes = {
   disabled: PropTypes.bool,
   children: PropTypes.any,
   title: PropTypes.string

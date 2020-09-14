@@ -44,6 +44,10 @@ const DispatchStyle = styled.section`
         }
       }
     }
+    .clickable {
+      color: darkblue;
+      cursor: pointer;
+    }
   }
 `;
 

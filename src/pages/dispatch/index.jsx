@@ -4,6 +4,7 @@ import DispatchStyle from "./dispatch.style";
 import InputField from "../../components/formComponents/inputField";
 import ContentBox from "../../components/contentBoxes";
 import Foldable from "../../components/foldables";
+import PlacesSearch from "../../components/placesSearch";
 
 const DispatchPage = () => {
 
@@ -14,7 +15,14 @@ const DispatchPage = () => {
     destination: null,
     special: null
   });
+  const [mapState, setMapState] = useState({
+    pickUp: null,
+    dropOff: null,
+    multi: false,
+    wayPoint: null
+  });
   const { packageType, vehicleType } = orderSummary;
+  const {pickUp, dropOff, multi, wayPoint} = mapState;
 
   const handlePackageTypeActive = (type) => {
     setOrderSummary({
@@ -46,18 +54,43 @@ const DispatchPage = () => {
       })
     }
   }
+  const toggleDropOff = () => {
+    setMapState({
+      ...mapState,
+      multi: !multi
+    })
+  }
+  const setPickup = address => {
+      setMapState({
+        ...mapState,
+        pickUp: address
+      })
+  }
+  const setDropOff = address => {
+    setMapState({
+      ...mapState,
+      dropOff: address
+    })
+  }
+  const setWayPoint = address => {
+    setMapState({
+      ...mapState,
+      wayPoint: address
+    })
+  }
+
   return (
     <DispatchStyle>
       <section id="main">
         <div className="container full">
-          <MapViewContainer/>
+          <MapViewContainer pickUp={pickUp} dropOff={dropOff} containerElement={<div style={{ height: "100vh", width: "100vw" }} />} mapElement={<div style={{ height: "100%" }} />} />
           <div className="actions-wrapper">
             <h1>Lets get your stuff delivered!</h1>
             <div className="form-wrapper">
-              <form>
-                <InputField onChange={e => handleInputs(e, "pickup")} placeHolder="Where do we meet you?" id="DA-pickup-location" />
-                <InputField onChange={e => handleInputs(e, "destination")} placeHolder="Where to?" id="DA-drop-off-location" />
-              </form>
+              <PlacesSearch placeHolder="Where do we meet you?" addMarkers={setPickup} />
+              <PlacesSearch placeHolder="Where do we drop off your items?" addMarkers={ multi ? setWayPoint : setDropOff} />
+              <a className="clickable" onClick={toggleDropOff}>{multi ? "Remove Extra Drop-off" : "Multiple Drop-offs?"}</a>
+              {multi && <PlacesSearch placeHolder="Where do we drop off your items?" addMarkers={setDropOff} />}
             </div>
             <Foldable title="Your Parcel Type">
               <div className="parcel-type">

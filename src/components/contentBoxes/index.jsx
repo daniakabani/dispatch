@@ -24,7 +24,7 @@ const ContentBox = props => {
   )
 };
 
-ContentBox.prototype = {
+ContentBox.propTypes = {
   image_source: PropTypes.string,
   text_content: PropTypes.string.isRequired,
   onClick: PropTypes.func
