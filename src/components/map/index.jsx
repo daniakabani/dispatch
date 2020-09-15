@@ -1,6 +1,6 @@
 /*global google*/
 
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { GoogleMap, withGoogleMap, Marker, DirectionsRenderer } from "react-google-maps";
 import PropTypes from "prop-types";
 
@@ -14,7 +14,7 @@ const defaultMapOptions = {
 };
 
 const MapViewContainer = withGoogleMap(props => {
-  const {pickUp = null, dropOff = null, wayPoint = null} = props;
+  const {pickUp = null, dropOff = null, wayPoint = null, mapCenter = null} = props;
 
   const [state, setState] = useState({
     directions: null
@@ -22,7 +22,8 @@ const MapViewContainer = withGoogleMap(props => {
   const { directions } = state;
 
   useEffect(()  => {
-    if ( pickUp?.lat && dropOff?.lat) {
+    console.log(wayPoint);
+    if ( pickUp?.lat && dropOff?.lat ) {
       const directionsService = new google.maps.DirectionsService();
 
       directionsService.route(
@@ -48,15 +49,16 @@ const MapViewContainer = withGoogleMap(props => {
       );
     }
   }, [dropOff, pickUp, wayPoint]);
-
+console.log(pickUp && !directions, dropOff && !directions);
   return (
     <GoogleMap
       defaultZoom={12}
-      defaultCenter={mapDefaultCenter}
+      defaultCenter={mapCenter ? mapCenter : mapDefaultCenter}
       options={defaultMapOptions}
     >
-      {pickUp && <Marker position={{lat: pickUp.lat, lng: pickUp.lng}} />}
-      {dropOff && <Marker position={{lat: dropOff.lat, lng: dropOff.lng}} />}
+      {(pickUp && !directions) && <Marker position={{lat: pickUp.lat, lng: pickUp.lng}} />}
+      {(dropOff && !directions) && <Marker position={{lat: dropOff.lat, lng: dropOff.lng}} />}
+      {(wayPoint && !directions) && <Marker position={{lat: wayPoint.lat, lng: wayPoint.lng}} />}
       {directions && <DirectionsRenderer directions={directions} />}
     </GoogleMap>
   );
