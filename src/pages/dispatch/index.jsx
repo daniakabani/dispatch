@@ -5,6 +5,7 @@ import InputField from "../../components/formComponents/inputField";
 import ContentBox from "../../components/contentBoxes";
 import Foldable from "../../components/foldables";
 import PlacesSearch from "../../components/placesSearch";
+import Button from "../../components/button";
 
 const DispatchPage = () => {
 
@@ -132,7 +133,7 @@ const DispatchPage = () => {
                 </div>
               </div>
             </Foldable>
-            <button onClick={() => console.log(orderSummary)}>Show Summary</button>
+            <Button success content="Confirm" onClick={() => console.log(orderSummary)} />
           </div>
         </div>
       </section>

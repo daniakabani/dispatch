@@ -45,7 +45,7 @@ const DispatchStyle = styled.section`
       }
     }
     .clickable {
-      color: darkblue;
+      color: #8e44ad;
       cursor: pointer;
     }
   }
