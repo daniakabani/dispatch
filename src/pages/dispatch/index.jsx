@@ -59,7 +59,8 @@ const DispatchPage = () => {
   const toggleDropOff = () => {
     setMapState({
       ...mapState,
-      multi: !multi
+      multi: !multi,
+      wayPoint: null
     })
   }
   const setPickup = address => {

@@ -31,6 +31,8 @@ const MapViewContainer = withGoogleMap(props => {
           origin: pickUp,
           destination: dropOff,
           travelMode: google.maps.TravelMode.DRIVING,
+          optimizeWaypoints: true,
+          provideRouteAlternatives: false,
           waypoints: wayPoint && [
             {
               location: wayPoint
