@@ -43,6 +43,12 @@ const DispatchStyle = styled.section`
           margin-bottom: 20px;
         }
       }
+      ul {
+        list-style: none;
+        li {
+          margin-bottom: 10px;
+        }
+      }
     }
     .clickable {
       color: #2ecc71;

@@ -17,10 +17,9 @@ const MapViewContainer = withGoogleMap(props => {
   const {pickUp = null, dropOff = null, wayPoint = null, mapCenter = null, calculateDistance = null} = props;
 
   const [state, setState] = useState({
-    directions: null,
-    distance: null
+    directions: null
   });
-  const { directions, distance } = state;
+  const { directions } = state;
 
   useEffect(()  => {
     if ( pickUp?.lat && dropOff?.lat ) {
@@ -49,11 +48,16 @@ const MapViewContainer = withGoogleMap(props => {
               lat: () => dropOff.lat,
               lng: () => dropOff.lng
             }
+            const waypointLatLng = {
+              lat: () => wayPoint.lat,
+              lng: () => wayPoint.lng
+            }
             setState({
-              directions: result,
-              distance: Math.floor(google.maps.geometry.spherical.computeDistanceBetween (pickUpLatLng, dropOffLatLng) / 1000)
+              directions: result
             });
-            calculateDistance(Math.floor(google.maps.geometry.spherical.computeDistanceBetween (pickUpLatLng, dropOffLatLng) / 1000));
+            const pickupToDropOff = google.maps.geometry.spherical.computeDistanceBetween(pickUpLatLng, dropOffLatLng);
+            const waypointToDropOff = wayPoint ? google.maps.geometry.spherical.computeDistanceBetween(waypointLatLng, dropOffLatLng) : 0;
+            calculateDistance(Math.floor((pickupToDropOff + waypointToDropOff) / 1000));
           } else {
             console.error(`error fetching directions ${result}`);
           }

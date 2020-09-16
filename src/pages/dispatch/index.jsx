@@ -10,7 +10,7 @@ import Button from "../../components/button";
 const DispatchPage = () => {
 
   const [orderSummary, setOrderSummary] = useState({
-    packageType: null,
+    packageType: "bike",
     vehicleType: null,
     pickup: null,
     destination: null,
@@ -92,6 +92,25 @@ const DispatchPage = () => {
       ...mapState,
       distance
     })
+  };
+  const summaryCalculator = () => {
+    (pickUp && dropOff) &&
+    setOrderSummary({
+      ...orderSummary,
+      displayResult: true
+    })
+  };
+  const priceCalculator = () => {
+    if (vehicleType && distance) {
+      console.log(vehicleType && distance);
+      if (vehicleType === "bike") {
+        return distance * 1;
+      } else {
+        return distance * 1.5;
+      }
+    } else {
+      console.log("nope");
+    }
   }
 
   if (!displayResult) {
@@ -100,11 +119,11 @@ const DispatchPage = () => {
         <section id="main">
           <div className="container full">
             <MapViewContainer
-                calculateDistance={getDistance}
-                mapCenter={mapCenter} pickUp={pickUp}
-                dropOff={dropOff} wayPoint={wayPoint}
-                containerElement={<div style={{ height: "100vh", width: "100vw" }} />}
-                mapElement={<div style={{ height: "100%" }} />}
+              calculateDistance={getDistance}
+              mapCenter={mapCenter} pickUp={pickUp}
+              dropOff={dropOff} wayPoint={wayPoint}
+              containerElement={<div style={{ height: "100vh", width: "100vw" }} />}
+              mapElement={<div style={{ height: "100%" }} />}
             />
             <div className="actions-wrapper">
               <h1>Lets get your stuff delivered!</h1>
@@ -150,7 +169,7 @@ const DispatchPage = () => {
                   </div>
                 </div>
               </Foldable>
-              <Button success content="Confirm" onClick={() => console.log(orderSummary, mapState)} />
+              <Button success content="Confirm" onClick={summaryCalculator} />
             </div>
           </div>
         </section>
@@ -158,17 +177,28 @@ const DispatchPage = () => {
     )
   } else {
     return (
-        <DispatchStyle>
-          <section id="main">
-            <div className="container full">
+      <DispatchStyle>
+        <section id="main">
+          <div className="container full">
+            <MapViewContainer
+                calculateDistance={getDistance}
+                mapCenter={mapCenter} pickUp={pickUp}
+                dropOff={dropOff} wayPoint={wayPoint}
+                containerElement={<div style={{ height: "100vh", width: "100vw" }} />}
+                mapElement={<div style={{ height: "100%" }} />}
+            />
+            <div className="actions-wrapper">
               <ul>
                 <li><span>From: </span> {pickUp.address}</li>
                 {wayPoint && <li><span>Extra: </span> {wayPoint.address}</li>}
                 <li><span>To: </span> {dropOff.address}</li>
+                <li><span>Distance: </span> {distance}KM</li>
+                <li><span>Total: </span> {priceCalculator()}RM</li>
               </ul>
             </div>
-          </section>
-        </DispatchStyle>
+          </div>
+        </section>
+      </DispatchStyle>
     )
   }
 };
