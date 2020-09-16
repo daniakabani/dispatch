@@ -102,14 +102,11 @@ const DispatchPage = () => {
   };
   const priceCalculator = () => {
     if (vehicleType && distance) {
-      console.log(vehicleType && distance);
       if (vehicleType === "bike") {
         return distance * 1;
       } else {
         return distance * 1.5;
       }
-    } else {
-      console.log("nope");
     }
   }
 

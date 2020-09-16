@@ -49,6 +49,9 @@ const DispatchStyle = styled.section`
           margin-bottom: 10px;
         }
       }
+      @media (max-width: 768px) {
+        margin: 0px;
+      }
     }
     .clickable {
       color: #2ecc71;
