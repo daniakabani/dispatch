@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import classNames from "classnames";
-import ButtonStyle from "./button.style"
+import ButtonStyle from "./button.style";
 
 const Button = props => {
   const { content, warning, danger, success, onClick } = props;

@@ -2,6 +2,7 @@ import React from "react";
 import usePlacesAutocomplete, {getGeocode, getLatLng} from "use-places-autocomplete";
 import {Combobox, ComboboxInput, ComboboxPopover, ComboboxOption} from "@reach/combobox";
 import PlacesSearchStyle from "./placesSearch.style";
+import propTypes from "prop-types";
 import "@reach/combobox/styles.css";
 
 
@@ -24,12 +25,12 @@ const PlacesSearch = props => {
             clearSuggestions();
             try {
               const results = await getGeocode({address});
-              const {lat, lng} = await getLatLng(results[0]);
-              const obj= {
+              const {lat, lng} = await getLatLng(results[0])
+              addMarkers({
                 lat,
-                lng
-              }
-              addMarkers(obj)
+                lng,
+                address
+              })
             } catch(e) {
               console.error(e);
             }
@@ -52,5 +53,10 @@ const PlacesSearch = props => {
     </PlacesSearchStyle>
   )
 };
+
+PlacesSearch.propTypes = {
+  placeHolder: propTypes.string,
+  addMarkers: propTypes.func
+}
 
 export default PlacesSearch;

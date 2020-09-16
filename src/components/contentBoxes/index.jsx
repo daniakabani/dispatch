@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import ContentBoxStyle from "./ContentBox.style";
 import classNames from "classnames";
 
@@ -25,9 +25,9 @@ const ContentBox = props => {
 };
 
 ContentBox.propTypes = {
-  image_source: PropTypes.string,
-  text_content: PropTypes.string.isRequired,
-  onClick: PropTypes.func
+  image_source: propTypes.string,
+  text_content: propTypes.string.isRequired,
+  onClick: propTypes.func
 };
 
 export default ContentBox;

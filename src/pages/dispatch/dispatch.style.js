@@ -45,8 +45,15 @@ const DispatchStyle = styled.section`
       }
     }
     .clickable {
-      color: #8e44ad;
+      color: #2ecc71;
       cursor: pointer;
+      transition: 0.3s all ease;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: inline-block;
+      &:hover {
+        color: #8e44ad;
+      }
     }
   }
 `;

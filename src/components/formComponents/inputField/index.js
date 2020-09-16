@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import InputFieldStyle from "./input.style";
 import classNames from "classnames";
 
@@ -26,13 +26,13 @@ const InputField = props => {
 };
 
 InputField.propTypes = {
-  name: PropTypes.string,
-  type: PropTypes.string,
-  onChange: PropTypes.func,
-  required: PropTypes.bool,
-  id: PropTypes.string.isRequired,
-  placeHolder: PropTypes.string,
-  lite: PropTypes.bool
+  name: propTypes.string,
+  type: propTypes.string,
+  onChange: propTypes.func,
+  required: propTypes.bool,
+  id: propTypes.string.isRequired,
+  placeHolder: propTypes.string,
+  lite: propTypes.bool
 }
 
 export default InputField;

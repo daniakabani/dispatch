@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import FoldableStyle from "./foldable.style";
 import ArrowImage from "./images/down-arrow.svg";
 import classNames from "classnames";
@@ -42,9 +42,9 @@ const Foldable = (props) => {
 };
 
 Foldable.propTypes = {
-  disabled: PropTypes.bool,
-  children: PropTypes.any,
-  title: PropTypes.string
+  disabled: propTypes.bool,
+  children: propTypes.any,
+  title: propTypes.string
 };
 
 export default Foldable;

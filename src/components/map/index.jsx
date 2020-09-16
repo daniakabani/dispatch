@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { GoogleMap, withGoogleMap, Marker, DirectionsRenderer } from "react-google-maps";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 
 const mapDefaultCenter = {
   lat: 3.1524588,
@@ -14,7 +14,7 @@ const defaultMapOptions = {
 };
 
 const MapViewContainer = withGoogleMap(props => {
-  const {pickUp = null, dropOff = null, wayPoint = null, mapCenter = null} = props;
+  const {pickUp = null, dropOff = null, wayPoint = null, mapCenter = null, calculateDistance = null} = props;
 
   const [state, setState] = useState({
     directions: null,
@@ -53,6 +53,7 @@ const MapViewContainer = withGoogleMap(props => {
               directions: result,
               distance: Math.floor(google.maps.geometry.spherical.computeDistanceBetween (pickUpLatLng, dropOffLatLng) / 1000)
             });
+            calculateDistance(Math.floor(google.maps.geometry.spherical.computeDistanceBetween (pickUpLatLng, dropOffLatLng) / 1000));
           } else {
             console.error(`error fetching directions ${result}`);
           }
@@ -76,7 +77,11 @@ const MapViewContainer = withGoogleMap(props => {
 });
 
 MapViewContainer.propTypes = {
-  markers: PropTypes.array
+  markers: propTypes.array,
+  calculateDistance: propTypes.func,
+  pickUp: propTypes.object,
+  dropOff: propTypes.object,
+  wayPoint: propTypes.object
 }
 
 export default MapViewContainer;
