@@ -12,9 +12,9 @@ npm run fizz -> to run a fizz buzz style program
 ---
 
 ## to run this app please do the following:
-1. on your favorite terminal app run: `npm install` or just `npm i` for a shortcut.
+1. on your favorite terminal app navigate to the dispatch app folder `cd dispatch` then run: `npm install` or just `npm i` for a shortcut.
 2. make sure to have a valid Google maps API key, if you don't please visit [this link](https://developers.google.com/maps/documentation/javascript/get-api-key) to get one.
-3. once you have your API key ready please place it in the Google maps script @ public/index.html
+3. once you have your API key ready please place it in the Google maps script @ public/index.html `<script src="https://maps.googleapis.com/maps/api/js?key=YOUR-GOOGLE-API-KEY&libraries=places,geometry,drawing&sensor=false"></script>`
 4. if everything is in place now simply run `npm start` to spin up the dev server
 
 ## to run the Fizz Buzz program
