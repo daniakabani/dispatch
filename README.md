@@ -1,28 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Dispatch simulation app
+This app simulates dispatching a delivery process from point A to B via React and Google maps API, this is my first ever attempt with google maps api along with react, and this app is still far from being perfect, there are surely a lot of exciting new stuff to learn and implement!
 
+in order for this app to run please make sure to have node.js v 10.x.x installed or later along with NPM for more info please visit [this link](https://nodejs.org/en/download/) and you will find all the information you need about node.js and NPM.
+
+---  
 ## Available Scripts
+npm start -> to start the react app and run google maps 
 
-In the project directory, you can run:
+npm run fizz -> to run a fizz buzz style program
 
-### `npm start`
+---
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## to run this app please do the following:
+1. on your favorite terminal app run: `npm install` or just `npm i` for a shortcut.
+2. make sure to have a valid Google maps API key, if you don't please visit [this link](https://developers.google.com/maps/documentation/javascript/get-api-key) to get one.
+3. once you have your API key ready please place it in the Google maps script @ public/index.html
+4. if everything is in place now simply run `npm start` to spin up the dev server
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## to run the Fizz Buzz program
+1. again make sure you have node.js installed
+2. simply run `npm run fizz` to see the results =]
