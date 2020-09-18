@@ -15,16 +15,22 @@ const defaultMapOptions = {
 
 const MapViewContainer = withGoogleMap(props => {
   const {pickUp = null, dropOff = null, wayPoint = null, mapCenter = null, calculateDistance = null} = props;
-
   const [state, setState] = useState({
-    directions: null
+    directions: null,
+    centerPoint: mapDefaultCenter
   });
-  const { directions } = state;
+  const { directions, centerPoint } = state;
 
   useEffect(()  => {
+    mapCenter?.lat && setState({
+      ...state,
+      centerPoint: {
+        lat: mapCenter?.lat,
+        lng: mapCenter?.lng
+      }
+    })
     if ( pickUp?.lat && dropOff?.lat ) {
       const directionsService = new google.maps.DirectionsService();
-
       directionsService.route(
         {
           origin: pickUp,
@@ -41,16 +47,16 @@ const MapViewContainer = withGoogleMap(props => {
         (result, status) => {
           if (status === google.maps.DirectionsStatus.OK) {
             const pickUpLatLng = {
-              lat: () => pickUp.lat,
-              lng: () => pickUp.lng
+              lat: () => pickUp?.lat,
+              lng: () => pickUp?.lng
             }
             const dropOffLatLng = {
-              lat: () => dropOff.lat,
-              lng: () => dropOff.lng
+              lat: () => dropOff?.lat,
+              lng: () => dropOff?.lng
             }
             const waypointLatLng = {
-              lat: () => wayPoint.lat,
-              lng: () => wayPoint.lng
+              lat: () => wayPoint?.lat,
+              lng: () => wayPoint?.lng
             }
             setState({
               directions: result
@@ -64,17 +70,17 @@ const MapViewContainer = withGoogleMap(props => {
         }
       );
     }
-  }, [dropOff, pickUp, wayPoint]);
+  }, [dropOff, pickUp, wayPoint, mapCenter]);
 
   return (
     <GoogleMap
       defaultZoom={12}
-      defaultCenter={mapCenter ? mapCenter : mapDefaultCenter}
+      defaultCenter={centerPoint}
       options={defaultMapOptions}
     >
-      {(pickUp && !directions) && <Marker position={{lat: pickUp.lat, lng: pickUp.lng}} />}
-      {(dropOff && !directions) && <Marker position={{lat: dropOff.lat, lng: dropOff.lng}} />}
-      {(wayPoint && !directions) && <Marker position={{lat: wayPoint.lat, lng: wayPoint.lng}} />}
+      <Marker position={pickUp?.lat && {lat: pickUp?.lat, lng: pickUp?.lng}} />
+      <Marker position={dropOff?.lat && {lat: dropOff?.lat, lng: dropOff?.lng}} />
+      <Marker position={wayPoint?.lat && {lat: wayPoint?.lat, lng: wayPoint?.lng}} />
       {directions && <DirectionsRenderer directions={directions} />}
     </GoogleMap>
   );

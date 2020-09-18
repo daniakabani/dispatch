@@ -22,9 +22,9 @@ const Button = props => {
 Button.propTypes = {
   content: propTypes.string,
   onClick: propTypes.func,
-  warning: propTypes.string,
-  danger: propTypes.string,
-  success: propTypes.string
+  warning: propTypes.bool,
+  danger: propTypes.bool,
+  success: propTypes.bool
 };
 
 export default Button;

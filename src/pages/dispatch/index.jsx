@@ -10,8 +10,8 @@ import Button from "../../components/button";
 const DispatchPage = () => {
 
   const [orderSummary, setOrderSummary] = useState({
-    packageType: "bike",
-    vehicleType: null,
+    packageType: null,
+    vehicleType: "bike",
     pickup: null,
     destination: null,
     special: null,
@@ -25,7 +25,7 @@ const DispatchPage = () => {
     mapCenter: null,
     distance: null
   });
-  const { packageType, vehicleType, displayResult } = orderSummary;
+  const { packageType, vehicleType, displayResult, special } = orderSummary;
   const {pickUp, dropOff, multi, mapCenter, wayPoint, distance} = mapState;
 
   const handlePackageTypeActive = (type) => {
@@ -162,7 +162,7 @@ const DispatchPage = () => {
                     <h4>Tell us if you have special instructions</h4>
                   </header>
                   <div className="package-types">
-                    <InputField onChange={e => handleInputs(e)} lite id="special-remarks" placeHolder="Any special remarks?" />
+                    <InputField onChange={e => handleInputs(e, 'special')} lite id="special-remarks" placeHolder="Any special remarks?" />
                   </div>
                 </div>
               </Foldable>
@@ -189,6 +189,9 @@ const DispatchPage = () => {
                 <li><span>From: </span> {pickUp.address}</li>
                 {wayPoint && <li><span>Extra: </span> {wayPoint.address}</li>}
                 <li><span>To: </span> {dropOff.address}</li>
+                <li><span>Parcel Type: </span> {packageType}</li>
+                <li><span>Vehicle Type: </span> {vehicleType}</li>
+                {special && <li><span>Special Remarks: </span> {special}</li>}
                 <li><span>Distance: </span> {distance}KM</li>
                 <li><span>Total: </span> {priceCalculator()}RM</li>
               </ul>
