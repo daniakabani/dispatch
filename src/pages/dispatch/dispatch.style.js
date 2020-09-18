@@ -47,6 +47,10 @@ const DispatchStyle = styled.section`
         list-style: none;
         li {
           margin-bottom: 10px;
+          span {
+            display: block;
+            font-weight: bold;
+          }
         }
       }
       @media (max-width: 768px) {
